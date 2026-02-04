@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍅 Pomodoro Çalışma Arkadaşın</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="title-container">
+                <div class="tomato-icon">🍅</div>
+                <h1 class="animated-title">
+                    <span class="letter">P</span>
+                    <span class="letter">o</span>
+                    <span class="letter">m</span>
+                    <span class="letter">o</span>
+                    <span class="letter">d</span>
+                    <span class="letter">o</span>
+                    <span class="letter">r</span>
+                    <span class="letter">o</span>
+                </h1>
+                <div class="sparkles">
+                    <span class="sparkle">✨</span>
+                    <span class="sparkle">⭐</span>
+                    <span class="sparkle">💫</span>
+                    <span class="sparkle">🌟</span>
+                </div>
+            </div>
+            <p class="subtitle">
+                <span class="subtitle-word">Odaklan</span>
+                <span class="subtitle-dot">•</span>
+                <span class="subtitle-word">Çalış</span>
+                <span class="subtitle-dot">•</span>
+                <span class="subtitle-word">Başar</span>
+                <span class="rocket">🚀</span>
+            </p>
+        </header>
+
+        <!-- Timer Section -->
+        <div class="timer-section">
+            <div class="mode-buttons">
+                <button class="mode-btn active" data-mode="pomodoro">Çalışma</button>
+                <button class="mode-btn" data-mode="short">Kısa Mola</button>
+                <button class="mode-btn" data-mode="long">Uzun Mola</button>
+            </div>
+
+            <div class="timer-display">
+                <div class="time" id="timer">25:00</div>
+                <div class="progress-ring">
+                    <svg width="300" height="300">
+                        <circle cx="150" cy="150" r="140" class="progress-ring-circle"></circle>
+                        <circle cx="150" cy="150" r="140" class="progress-ring-fill" id="progress"></circle>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="timer-controls">
+                <button class="control-btn start" id="startBtn">
+                    <span class="btn-icon">▶</span>
+                    <span class="btn-text">Başlat</span>
+                </button>
+                <button class="control-btn reset" id="resetBtn">
+                    <span class="btn-icon">↻</span>
+                    <span class="btn-text">Sıfırla</span>
+                </button>
+            </div>
+
+            <div class="motivation-box" id="motivation">
+                <p class="motivation-text">Harika işler çıkarmaya hazır mısın? 🚀</p>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-icon">🍅</div>
+                <div class="stat-value" id="completedPomodoros">0</div>
+                <div class="stat-label">Tamamlanan Pomodoro</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⏱️</div>
+                <div class="stat-value" id="totalTime">0dk</div>
+                <div class="stat-label">Toplam Çalışma</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-value" id="completedTasks">0</div>
+                <div class="stat-label">Tamamlanan Görev</div>
+            </div>
+        </div>
+
+        <!-- Tasks Section -->
+        <div class="tasks-section">
+            <h2>📝 Görevlerim</h2>
+            <div class="task-input-container">
+                <input type="text" id="taskInput" placeholder="Yeni görev ekle..." maxlength="100">
+                <button id="addTaskBtn">Ekle</button>
+            </div>
+            <ul class="task-list" id="taskList"></ul>
+        </div>
+
+        <!-- Settings Panel -->
+        <div class="settings-panel" id="settingsPanel">
+            <div class="settings-header">
+                <h3>⚙️ Ayarlar</h3>
+                <button class="close-btn" id="closeSettings">×</button>
+            </div>
+            <div class="settings-content">
+                <div class="setting-item">
+                    <label>Çalışma Süresi (dk)</label>
+                    <input type="number" id="pomodoroTime" min="1" max="60" value="25">
+                </div>
+                <div class="setting-item">
+                    <label>Kısa Mola (dk)</label>
+                    <input type="number" id="shortBreakTime" min="1" max="30" value="5">
+                </div>
+                <div class="setting-item">
+                    <label>Uzun Mola (dk)</label>
+                    <input type="number" id="longBreakTime" min="1" max="60" value="15">
+                </div>
+                <div class="setting-item">
+                    <label>Bildirimler</label>
+                    <label class="switch">
+                        <input type="checkbox" id="notificationsToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>Ses</label>
+                    <label class="switch">
+                        <input type="checkbox" id="soundToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Theme Selector -->
+        <div class="theme-selector">
+            <button class="theme-btn" data-theme="tomato" title="Domates">🍅</button>
+            <button class="theme-btn" data-theme="ocean" title="Okyanus">🌊</button>
+            <button class="theme-btn" data-theme="forest" title="Orman">🌲</button>
+            <button class="theme-btn" data-theme="sunset" title="Gün Batımı">🌅</button>
+            <button class="theme-btn" data-theme="lavender" title="Lavanta">💜</button>
+        </div>
+
+        <!-- Settings Button -->
+        <button class="floating-settings-btn" id="settingsBtn">⚙️</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
